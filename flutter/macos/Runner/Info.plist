@@ -31,9 +31,9 @@
 
 	<!-- Posthog -->
 	<key>com.posthog.posthog.API_KEY</key>
-	<string>phc_brFjanMrA2KXPYyvFjLdwJC9VJvl4VG7mG9yKqvgCCY</string>
+	<string>phc_lWqk3WNO0oxKX0MrxguzRFoFCyt22utssjHYq5P2x0P</string>
 	<key>com.posthog.posthog.POSTHOG_HOST</key>
-	<string>https://app.posthog.com</string>
+	<string>https://us.i.posthog.com</string>
 	<key>com.posthog.posthog.CAPTURE_APPLICATION_LIFECYCLE_EVENTS</key>
 	<true/>
 	<key>com.posthog.posthog.DEBUG</key>
