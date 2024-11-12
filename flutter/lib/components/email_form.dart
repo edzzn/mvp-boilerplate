@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:devtodollars/components/recover_password_dialog.dart';
-import 'package:devtodollars/services/auth_notifier.dart';
+import 'package:learnlog/components/recover_password_dialog.dart';
+import 'package:learnlog/services/auth_notifier.dart';
 
 enum AuthAction { signIn, signUp }
 
@@ -19,6 +19,7 @@ class _EmailFormState extends ConsumerState<EmailForm> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController pwController = TextEditingController();
   final TextEditingController confirmPwController = TextEditingController();
+  bool _showPassword = false;
 
   String errorMessage = '';
   bool loading = false;
@@ -77,12 +78,8 @@ class _EmailFormState extends ConsumerState<EmailForm> {
               context: context,
               builder: (_) => AlertDialog(
                 title: const Text("Check your Email!"),
-                content: const Text(
-                    "We sent an email from hi@devtodollars.com to verify your email"),
-                actions: [
-                  TextButton(
-                      onPressed: context.pop, child: const Text("Ok Matt."))
-                ],
+                content: const Text("We sent an email from hi@learnlog.com to verify your email"),
+                actions: [TextButton(onPressed: context.pop, child: const Text("Ok Matt."))],
               ),
             );
           }
@@ -108,15 +105,13 @@ class _EmailFormState extends ConsumerState<EmailForm> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Text((action == AuthAction.signIn) ? "Login" : "Create an account",
-                style: textTheme.titleLarge),
+            Text((action == AuthAction.signIn) ? "Login" : "Create an account", style: textTheme.titleLarge),
             const SizedBox(height: 16),
             TextFormField(
               controller: emailController,
               enabled: !loading,
               autofocus: true,
-              decoration: const InputDecoration(
-                  labelText: "Email", border: OutlineInputBorder()),
+              decoration: const InputDecoration(labelText: "Email", border: OutlineInputBorder()),
               validator: (_) => validateEmailField(),
               keyboardType: TextInputType.emailAddress,
               autofillHints: const [AutofillHints.email],
@@ -125,9 +120,21 @@ class _EmailFormState extends ConsumerState<EmailForm> {
             TextFormField(
               controller: pwController,
               enabled: !loading,
-              decoration: const InputDecoration(
-                  labelText: "Password", border: OutlineInputBorder()),
-              obscureText: true,
+              decoration: InputDecoration(
+                labelText: "Password",
+                border: const OutlineInputBorder(),
+                suffixIcon: IconButton(
+                  icon: Icon(
+                    _showPassword ? Icons.visibility : Icons.visibility_off,
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      _showPassword = !_showPassword;
+                    });
+                  },
+                ),
+              ),
+              obscureText: !_showPassword,
               validator: (_) => validatePasswordField(),
               autofillHints: const [AutofillHints.password],
               keyboardType: TextInputType.text,
@@ -156,8 +163,7 @@ class _EmailFormState extends ConsumerState<EmailForm> {
                 padding: const EdgeInsets.only(top: 8),
                 child: Text(
                   errorMessage,
-                  style:
-                      textTheme.bodyMedium?.copyWith(color: colorScheme.error),
+                  style: textTheme.bodyMedium?.copyWith(color: colorScheme.error),
                 ),
               ),
             const SizedBox(height: 16),
@@ -177,24 +183,20 @@ class _EmailFormState extends ConsumerState<EmailForm> {
                         errorMessage = "";
                       });
                     },
-                    child: Text((action == AuthAction.signIn)
-                        ? "Don't have an account?"
-                        : "Have an account?"),
+                    child: Text((action == AuthAction.signIn) ? "Don't have an account?" : "Have an account?"),
                   ),
                   TextButton(
                     onPressed: () {
                       showDialog(
                         context: context,
                         builder: (_) {
-                          return RecoverPasswordDialog(
-                              email: emailController.text);
+                          return RecoverPasswordDialog(email: emailController.text);
                         },
                       );
                     },
                     child: Text(
                       "Forgot Password",
-                      style: textTheme.bodyMedium
-                          ?.copyWith(color: colorScheme.outline),
+                      style: textTheme.bodyMedium?.copyWith(color: colorScheme.outline),
                     ),
                   ),
                 ],

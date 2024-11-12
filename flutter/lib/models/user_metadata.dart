@@ -1,4 +1,4 @@
-import 'package:devtodollars/models/stripe.dart';
+import 'package:learnlog/models/stripe.dart';
 
 class UserMetadata {
   final String? avatarUrl;
@@ -24,9 +24,7 @@ class UserMetadata {
       fullName: json['full_name'],
       id: json['id'],
       paymentMethod: json['payment_method'],
-      subscription: json['subscription'] != null
-          ? SubscriptionWithPrice.fromJson(json['subscription'])
-          : null,
+      subscription: json['subscription'] != null ? SubscriptionWithPrice.fromJson(json['subscription']) : null,
     );
   }
 
