@@ -1,8 +1,8 @@
-import 'package:devtodollars/services/metadata_notifier.dart';
+import 'package:learnlog/services/metadata_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:devtodollars/services/auth_notifier.dart';
+import 'package:learnlog/services/auth_notifier.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:posthog_flutter/posthog_flutter.dart';
 
@@ -20,7 +20,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   Widget build(BuildContext context) {
     final authNotif = ref.watch(authProvider.notifier);
     final metaAsync = ref.watch(metadataProvider);
-    final pricingUrl = Uri.parse("https://github.com/devtodollars/mvp-boilerplate/blob/main/flutter/README.md");
+    final pricingUrl = Uri.parse("https://github.com/learnlog/mvp-boilerplate/blob/main/flutter/README.md");
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,

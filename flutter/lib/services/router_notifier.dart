@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:posthog_flutter/posthog_flutter.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:devtodollars/components/dialog_page.dart';
-import 'package:devtodollars/components/reset_password_dialog.dart';
-import 'package:devtodollars/screens/auth_screen.dart';
-import 'package:devtodollars/screens/home_screen.dart';
-import 'package:devtodollars/screens/payments_screen.dart';
-import 'package:devtodollars/services/auth_notifier.dart';
+import 'package:learnlog/components/dialog_page.dart';
+import 'package:learnlog/components/reset_password_dialog.dart';
+import 'package:learnlog/screens/auth_screen.dart';
+import 'package:learnlog/screens/home_screen.dart';
+import 'package:learnlog/screens/payments_screen.dart';
+import 'package:learnlog/services/auth_notifier.dart';
 
 part 'router_notifier.g.dart';
 
@@ -37,8 +37,7 @@ GoRouter router(RouterRef ref) {
             return '/login';
           }
           // If user is authenticated and trying to access login or loading, direct to home
-          if (user != null &&
-              (initUrl?.path == '/login' || initUrl?.path == '/loading')) {
+          if (user != null && (initUrl?.path == '/login' || initUrl?.path == '/loading')) {
             return "/";
           }
           // After handling initial redirection, clear initUrl to prevent repeated redirections
@@ -68,7 +67,7 @@ GoRouter router(RouterRef ref) {
         name: 'home',
         path: '/',
         builder: (context, state) {
-          return const HomeScreen(title: "DevToDollars");
+          return const HomeScreen(title: "learnlog");
         },
         routes: [
           GoRoute(

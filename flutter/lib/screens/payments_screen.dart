@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:devtodollars/services/auth_notifier.dart';
+import 'package:learnlog/services/auth_notifier.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -23,16 +23,13 @@ class _PaymentsScreenState extends ConsumerState<PaymentsScreen> {
         url = await authNotif.getUserStripeLink(price: widget.price);
       } on FunctionException catch (e) {
         if (!mounted) return;
-        var msg =
-            e.details?["message"] ?? "Error retrieving stripe redirect url";
+        var msg = e.details?["message"] ?? "Error retrieving stripe redirect url";
         showDialog(
           context: context,
           builder: (_) => AlertDialog(
             title: const Text("Failed to open Stripe"),
             content: Text(msg),
-            actions: [
-              TextButton(onPressed: context.pop, child: const Text("Ok"))
-            ],
+            actions: [TextButton(onPressed: context.pop, child: const Text("Ok"))],
           ),
         );
       }

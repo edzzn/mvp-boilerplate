@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:devtodollars/services/auth_notifier.dart';
+import 'package:learnlog/services/auth_notifier.dart';
 
 class ResetPasswordDialog extends ConsumerStatefulWidget {
   const ResetPasswordDialog({
@@ -9,8 +9,7 @@ class ResetPasswordDialog extends ConsumerStatefulWidget {
   });
 
   @override
-  ConsumerState<ResetPasswordDialog> createState() =>
-      _ResetPasswordDialogState();
+  ConsumerState<ResetPasswordDialog> createState() => _ResetPasswordDialogState();
 }
 
 class _ResetPasswordDialogState extends ConsumerState<ResetPasswordDialog> {

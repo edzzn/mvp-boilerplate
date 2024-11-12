@@ -1,6 +1,6 @@
-import 'package:devtodollars/models/stripe.dart';
-import 'package:devtodollars/models/user_metadata.dart';
-import 'package:devtodollars/services/auth_notifier.dart';
+import 'package:learnlog/models/stripe.dart';
+import 'package:learnlog/models/user_metadata.dart';
+import 'package:learnlog/services/auth_notifier.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -15,8 +15,7 @@ class Metadata extends _$Metadata {
     final session = ref.watch(authProvider).value;
     if (session == null) return null;
 
-    final (metadata, subscription) =
-        await (getUserDetails(), getSubscription()).wait;
+    final (metadata, subscription) = await (getUserDetails(), getSubscription()).wait;
     metadata.subscription = subscription;
     return metadata;
   }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:devtodollars/services/auth_notifier.dart';
+import 'package:learnlog/services/auth_notifier.dart';
 
 class RecoverPasswordDialog extends ConsumerStatefulWidget {
   const RecoverPasswordDialog({
@@ -12,8 +12,7 @@ class RecoverPasswordDialog extends ConsumerStatefulWidget {
   final String email;
 
   @override
-  ConsumerState<RecoverPasswordDialog> createState() =>
-      _RecoverPasswordDialogState();
+  ConsumerState<RecoverPasswordDialog> createState() => _RecoverPasswordDialogState();
 }
 
 class _RecoverPasswordDialogState extends ConsumerState<RecoverPasswordDialog> {
@@ -35,8 +34,7 @@ class _RecoverPasswordDialogState extends ConsumerState<RecoverPasswordDialog> {
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const Text(
-              "Get instructions sent to this email that explain how to reset your password"),
+          const Text("Get instructions sent to this email that explain how to reset your password"),
           const SizedBox(height: 30),
           Form(
             key: _formKey,

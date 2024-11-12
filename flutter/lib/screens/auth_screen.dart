@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:devtodollars/components/email_form.dart';
+import 'package:learnlog/components/email_form.dart';
 import 'package:go_router/go_router.dart';
 import 'package:supabase_auth_ui/supabase_auth_ui.dart';
 
@@ -21,11 +21,8 @@ class _AuthScreenState extends State<AuthScreen> {
       context: context,
       builder: (_) => AlertDialog(
         title: const Text("Check your Email!"),
-        content: const Text(
-            "We sent an email from hi@devtodollars.com to verify your email"),
-        actions: [
-          TextButton(onPressed: context.pop, child: const Text("Ok Matt."))
-        ],
+        content: const Text("We sent an email from hi@learnlog.com to verify your email"),
+        actions: [TextButton(onPressed: context.pop, child: const Text("Ok Matt."))],
       ),
     );
   }
@@ -42,10 +39,7 @@ class _AuthScreenState extends State<AuthScreen> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               SupaSocialsAuth(
-                socialProviders: const [
-                  OAuthProvider.github,
-                  OAuthProvider.google
-                ],
+                socialProviders: const [OAuthProvider.github, OAuthProvider.google],
                 onSuccess: (_) {},
                 showSuccessSnackBar: false,
                 redirectUrl: (kIsWeb) ? initUrl.toString() : null,
